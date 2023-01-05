@@ -27,3 +27,4 @@ sidebar_position: 1
 - ftp (개념부터)
 - NAT
 - 포트포워딩
+- 인터넷 속도
