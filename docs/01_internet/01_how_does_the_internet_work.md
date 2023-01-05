@@ -3,8 +3,7 @@ sidebar_position: 1
 ---
 
 # How does the Internet work?
-
-## 키워드
+> 1월 첫째주 글
 
 ## 인터넷은 무엇인가
 
