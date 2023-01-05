@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# How does the Internet work? (wip)
+# How does the Internet work?
 
 ## 키워드
 
