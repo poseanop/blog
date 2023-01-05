@@ -6,11 +6,6 @@ sidebar_position: 1
 
 ## 키워드
 
-- 실생활에서의 인터넷라우터 (스펙, 우리집)
-- isp (https://namu.wiki/w/%EC%9D%B8%ED%84%B0%EB%84%B7%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%A0%9C%EA%B3%B5%EC%82%AC%EC%97%85%EC%9E%90)
-- skt, kt 인터넷
-- 망사용료
-
 ## 인터넷은 무엇인가
 
 ```
@@ -31,13 +26,15 @@ sidebar_position: 1
 
 ## 인터넷 라우터
 
-- 인터넷 공유기, Home Router 라고도 함.
-- 인터넷에 접속하려면 ISP에서 할당받은 공인 IP가 필요하다.
-- 포트포워딩 (tbd)
+- 인터넷 공유기, Home Router 라고도 함. 상위 통신망과 하위 통신망 사이를 중계해주는 역할을 함.
+- 비슷한 용어 (모뎀 : 인터넷 신호 수신 / 셋톱박스 : TV 신호 수신)
+- ISP에서 공인 IP를 라우터에 할당해줌.
+- 포트포워딩 (추후.. 작성)
 
 ## ISP
 
--
+- 국내에는 KT,SKT,LGU+ 세 통신사가 ISP 사업을 하고 있다.
+- 망사용료라는 최근에 붉어진 개념이 있다. ISP가 CP측이 망접속료가 아닌 사용료를 가지고 현재까지 싸우고있다.
 
 ## 인터넷의 특징
 
@@ -57,6 +54,10 @@ sidebar_position: 1
 - 인터넷 작동하게하는 공유 기술 표준은 **IETF** (Internet Engineering Task Force) 에서 관리한다.
 - 국가나 단체 또는 ISP에게 IP 주소 공간을 할당 및 관리하고, TLD의 신규 등록 및 관리 업무를 수행하는 **ICANN** (Internet Corporation for Assigned Names and Numbers) 라는 단체도 있다.
 
+## 인터넷 속도
+
+- 보통의 경우와, 우리집 속도를 체크해보기 (추후.. 작성)
+
 ## 참고사이트
 
 - https://roadmap.sh/frontend
@@ -65,3 +66,4 @@ sidebar_position: 1
 - https://developer.mozilla.org/ko/docs/Learn/Common_questions/How_does_the_Internet_work
 - https://www.vox.com/2014/6/16/18076282/the-internet
 - https://codechan25.tistory.com/25
+- https://www.youtube.com/watch?v=T65PZXxD7tw
