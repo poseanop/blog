@@ -26,7 +26,7 @@ sidebar_position: 1
 
 ## 인터넷 라우터
 
-- 인터넷 공유기, Home Router 라고도 함. 상위 통신망과 하위 통신망 사이를 중계해주는 역할을 함.
+- 인터넷 공유기, Home Router 라고도 함. 상위 통신망과 하위 통신망 사이를 중계해주는 역할을 함. Wi-Fi 기술을 통해 인터넷을 무선으로 사용할 수 있게 해준다.
 - 비슷한 용어 (모뎀 : 인터넷 신호 수신 / 셋톱박스 : TV 신호 수신)
 - ISP에서 공인 IP를 라우터에 할당해줌.
 
@@ -53,28 +53,22 @@ sidebar_position: 1
 - 인터넷 작동하게하는 공유 기술 표준은 **IETF** (Internet Engineering Task Force) 에서 관리한다.
 - 국가나 단체 또는 ISP에게 IP 주소 공간을 할당 및 관리하고, TLD의 신규 등록 및 관리 업무를 수행하는 **ICANN** (Internet Corporation for Assigned Names and Numbers) 라는 단체도 있다.
 
-## 참고사이트
+## IP 주소
 
-- https://roadmap.sh/frontend
-- http://www.tcpschool.com/webbasic/intro
-- https://roadmap.sh/guides/what-is-internet (network, ip, )
-- https://developer.mozilla.org/ko/docs/Learn/Common_questions/How_does_the_Internet_work (web)
-- https://www.vox.com/2014/6/16/18076282/the-internet (network, ip, cloud, packet, web, ssl, )
-- https://codechan25.tistory.com/25 (network)
-- https://namu.wiki/w/%EC%9D%B8%ED%84%B0%EB%84%B7%20%EA%B3%B5%EC%9C%A0%EA%B8%B0 (ip, NAT, 포트포워딩)
-- https://www.youtube.com/watch?v=T65PZXxD7tw
+- 인터넷 프로토콜(Internet Protocol). 인터넷통신 규약에서 통신에 필요한 컴퓨터의 고유 주소를 IP 주소라고 한다.
+- IPv4 : 널리 사용되는 IP 주소로, 255.255.255.255 32비트의 값을 가진다. (43억개) 현재는 IP 주소 고갈 이슈로 할당이 중지된 상태. 우리나라는 1억개의 주소가 할당이 되어있고 활발히 사용중이며 IPv6 으로의 대체도 시도는 되고있다.
+- IPv6 : `2606:2800:0220:0001:0248:1893:25c8:1946` 128비트의 값
+- 공인IP주소 : 실제로 다른 컴퓨터와 통신할 때 쓰는 IP주소
+- 사설IP주소 : 공인IP주소 할당함에 따른 비용문제로 생겨난 사설 주소. 라우터에서 따로 할당해준 내부 IP주소값을 의미한다.
+- NAT(Network Address Translation) : IP 패킷의 포트숫자와 소스, 목적지의 IP주소를 재기록하면서 라우터를 통해 네트워크 트래픽을 주고받는 기술 (사설IP가 이 기술로 나온것)
+- localhost : 루프백 호스트명. 내 컴퓨터를 의미함. IP주소는 `127.0.0.1`
+
+## 포트포워딩
+
+- 포트포워딩 : 외부에서 내 라우터에 실행되는 프로세스에 접근하기 위해서 방화벽을 풀고 고정IP:포트번호 로 접속이 가능하도록 설정하는 과정
 
 ## 추가로 공부하고싶은 부분
 
-- cdn
-- 와이파이 셀룰러
-- web (개념부터)
-- network (라우터,백본 등등 구체화, 그외 네트워크망, content provider network)
-- ip (개념부터)
-- 클라우드 (개념부터)
-- 패킷 (개념부터)
-- SSL (개념부터)
-- ftp (개념부터)
-- NAT
-- 포트포워딩
-- 인터넷 속도
+- web (새로운 포스팅)
+  - cdn
+- 클라우드 (새로운 포스팅)
