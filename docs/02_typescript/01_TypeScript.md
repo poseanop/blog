@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# TypeScript
+# TypeScript 핸드북
 
 > 1월 둘째주 글
 
@@ -88,3 +88,274 @@ handleRequest(req.url, req.method);
 - 0n
 - null
 - undefined
+
+### never 타입
+
+- `never` : 존재하지 않는 상태.
+
+```ts
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+// ---cut---
+type Shape = Circle | Square;
+
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.sideLength ** 2;
+    default:
+      const _exhaustiveCheck: never = shape;
+      return _exhaustiveCheck;
+  }
+}
+```
+
+```ts
+function fail(msg: string): never {
+  throw new Error(msg);
+}
+```
+
+### unknown 타입
+
+- unknown 타입은 모든 값을 낸다. any 타입과 유사합니다만, unknown 타입에 어떤 것을 대입하는 것이 유효하지 않기 때문에 더 안전하다.
+
+```ts
+function f1(a: any) {
+  a.b(); // OK
+}
+function f2(a: unknown) {
+  a.b(); // ERROR
+}
+function f3(a: unknown) {
+  return a; // OK. 대입시키지 않고 오류내지 않는 좋은 패턴
+}
+```
+
+### 타입제한
+
+```ts
+function longest<Type extends { length: number }>(a: Type, b: Type) {
+  if (a.length >= b.length) {
+    return a;
+  } else {
+    return b;
+  }
+}
+
+// longerArray 의 타입은 'number[]' 입니다'
+const longerArray = longest([1, 2], [1, 2, 3]);
+// longerString 의 타입은 'alice' | 'bob' 입니다.
+const longerString = longest("alice", "bob");
+// 에러! Number에는 'length' 프로퍼티가 없습니다.
+const notOK = longest(10, 100);
+```
+
+```ts
+function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
+  return obj[key];
+}
+
+let x = { a: 1, b: 2, c: 3, d: 4 };
+
+getProperty(x, "a");
+getProperty(x, "m");
+```
+
+### 타입 인수 명시
+
+- TypeScript는 기본적으로 제네릭 호출에서 의도된 타입을 대체로 추론해 내지만, 항상 그렇지는 않습니다.
+
+```ts
+function combine<Type>(arr1: Type[], arr2: Type[]): Type[] {
+  return arr1.concat(arr2);
+}
+const arr = combine([1, 2, 3], ["hello"]); // error
+const arr = combine<string | number>([1, 2, 3], ["hello"]); // 수동으로 타입 명시해야함
+```
+
+### Index signatures
+
+- 유형 속성의 모든 이름을 미리 알지 못하지만 값의 형태는 알고 있는 경우
+
+```ts
+interface StringArray {
+  [index: number]: string;
+}
+
+const getStringArray = () => {
+  return ["3", "4"];
+};
+
+const myArray: StringArray = getStringArray();
+const secondItem = myArray[1];
+console.log(secondItem);
+```
+
+### keyof
+
+- 객체 타입에서 객체의 키 값들을 숫자나 문자열 리터럴 유니언을 생성한다. 아래 타입 P는 “x” | “y”와 동일한 타입입니다.
+
+```ts
+type Point = { x: number; y: number };
+type P = keyof Point; // "x" | "y"
+
+type Arrayish = { [n: number]: unknown };
+type A = keyof Arrayish; // number
+```
+
+### ReturnType
+
+- 함수 타입 을 받으면서 반환되는 타입을 제공
+
+```ts
+type Predicate = (x: unknown) => boolean;
+type K = ReturnType<Predicate>; // boolean
+
+function f() {
+  return { x: 10, y: 3 };
+}
+type P1 = ReturnType<typeof f>; // typeof 로 함수의 타입을 넘겨주어야함.
+type P2 = ReturnType<f>; // ERROR // 값을 넘기면 안됨!
+```
+
+### Indexed Access Types
+
+- 타입의 특정 프로퍼티를 찾기 위해서 인덱싱된 접근 타입 을 사용할 수 있다.
+
+```ts
+type Person = { age: number; name: string; alive: boolean };
+type Age = Person["age"];
+```
+
+- 리터럴 요소 타입 캡쳐링
+
+```ts
+const MyArray = [
+  { name: "Alice", age: 15 },
+  { name: "Bob", age: 23 },
+  { name: "Eve", age: 38 },
+];
+
+type Person = typeof MyArray[number];
+
+type Age = typeof MyArray[number]["age"];
+// Or
+type Age2 = Person["age"];
+```
+
+### 조건부 타입
+
+```ts
+type MessageOf<T> = T extends { message: unknown } ? T["message"] : never;
+
+interface Email {
+  message: string;
+}
+
+interface Dog {
+  bark(): void;
+}
+
+type EmailMessageContents = MessageOf<Email>;
+
+type DogMessageContents = MessageOf<Dog>;
+```
+
+```ts
+type Flatten<T> = T extends any[] ? T[number] : T;
+
+// Extracts out the element type.
+type Str = Flatten<string[]>;
+
+// Leaves the type alone.
+type Num = Flatten<number>;
+```
+
+### 조건부 타입 내에서 추론
+
+- infer : 직접 추출하지 않고 요소 타입을 추론
+
+```ts
+type Flatten<Type> = Type extends Array<infer Item> ? Item : Type;
+
+// ReturnType<T> 에서 infer를 사용한다.
+type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
+  ? Return
+  : never;
+```
+
+### Mapped Types
+
+- 중복을 피하기 위해 key 는 유지하되 value타입 값만 변경
+
+```ts
+type FeatureFlags = {
+  darkMode: () => void;
+  newUserProfile: () => void;
+};
+
+type OptionsFlags<Type> = {
+  [Property in keyof Type]: boolean;
+}; // 맵핑 타입
+
+type FeatureOptions = OptionsFlags<FeatureFlags>;
+/**
+ * type FeatureOptions = {
+    darkMode: boolean;
+    newUserProfile: boolean;
+   };
+ * */
+```
+
+### Key Remapping via `as`
+
+- 속성값 변경
+
+```ts
+type Getters<Type> = {
+  [Property in keyof Type as `get${Capitalize<
+    string & Property // string 머징이 필요함!!
+  >}`]: () => Type[Property];
+};
+
+interface Person {
+  name: string;
+  age: number;
+  location: string;
+}
+
+type LazyPerson = Getters<Person>;
+/**
+ * type LazyPerson = {
+    getName: () => string;
+    getAge: () => number;
+    getLocation: () => string;
+   }
+ * /
+```
+
+- never 로 키 필터링
+
+```ts
+// 'kind' 프로퍼티를 제거합니다
+type RemoveKindField<Type> = {
+  [Property in keyof Type as Exclude<Property, "kind">]: Type[Property];
+};
+
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+type KindlessCircle = RemoveKindField<Circle>;
+```
