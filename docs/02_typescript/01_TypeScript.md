@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# TypeScript 핸드북
+# TypeScript 핸드북 정리
 
 > 1월 둘째주 글
 
@@ -13,14 +13,13 @@ sidebar_position: 1
 
 ### 정적 타입 검사
 
-- **정적 타입 검사**
-  1.  프로그램을 실행시키지 않으면서 코드의 오류를 찾아준다
-  2.  어떤 것이 오류인지와 어떤 것이 연산 되는 값인지 체크해준다
+1.  프로그램을 실행시키지 않으면서 코드의 오류를 찾아준다
+2.  해당 값이 연산 되는 값인지 체크해준다
 
 ```js
 // 코드의 오류를 찾아준다. (JS에서는 참이지만 명백히 오류구문)
 "" == 0; // true
-// 오류인지, 연산되는 값인지 체크해준다. (undefined를 곱하는 것은 명백히 오류구문)
+// 연산되는 값인지 체크해준다. (undefined를 곱하는 것은 명백히 오류구문)
 const obj = { width: 10 };
 obj.height * obj.width; // NaN
 ```
@@ -29,9 +28,7 @@ obj.height * obj.width; // NaN
 
 - TypeScript는 JavaScript 코드의 런타임 특성을 절대 변화시키지 않습니다.
 - 타입 시스템 자체는 프로그램이 실행될 때 작동하는 방식과 관련이 없습니다.
-- TypeScript는 컴파일타임 타입 검사자가 있는 JavaScript의 런타임입니다.
-  - JavaScript의 런타임동작을 모델링하는 타입시스템을 가진다.
-  - TypeScript는 코드가 시간에 따라 변수가 변경되는 방식을 이해하며, 이러한 검사를 사용해 타입을 골라낼 수 있습니다.
+- JavaScript의 런타임동작을 모델링하는 타입시스템을 가진다. (컴파일타임에 체크)
 
 ### typeof (타입가드)
 
@@ -42,9 +39,9 @@ Array.isArray(type);
 
 ### 덕타이핑, 구조적타이핑
 
-- 타입 확장에 대해 열려있다.
 - 명확한 상속관계(A - B)를 지향하는 **명목적 타이핑**과 다르게
 - **구조적 타이핑**은 **집합으로 포함한다는 개념**을 지향.
+- 덕분에 타입 확장에 대해 열려있다.
 
 ```ts
 interface Point {
@@ -60,25 +57,27 @@ const point = { x: 12, y: 26, z: 3 };
 returnPoint(point);
 ```
 
-### TypeScript 주요옵션
+### TypeScript 주요옵션 (권장)
 
 - `noImplicitAny` : any 를 사용하지 않도록 강제하는 옵션
 - `strictNullChecks` : null과 undefined 를 처리를 강제하는 옵션
 
 ### as const
 
+- 객체를 상수화 (리터럴타입으로)
+
 ```ts
 const handleRequest = (url: string, method: "GET" | "POST") => {
   return;
 };
 
-const req = { url: "https://example.com", method: "GET" };
+const req = { url: "https://example.com", method: "GET" }; // as const;
 handleRequest(req.url, req.method);
 // req.method 는 string으로 추론되서 에러를 냄.
 ```
 
-1. `method as "GET"` 타입단언 해주거나
-2. req 객체 자체를 `as const` (리터럴 타입으로 변환) 해주어야함
+- req 객체 자체를 `as const` (리터럴 타입으로 변환) 해주어야함
+- `method as "GET"` 타입단언 하는 방법도 있음
 
 ### false를 반환하는 타입
 
@@ -127,7 +126,8 @@ function fail(msg: string): never {
 
 ### unknown 타입
 
-- unknown 타입은 모든 값을 낸다. any 타입과 유사합니다만, unknown 타입에 어떤 것을 대입하는 것이 유효하지 않기 때문에 더 안전하다.
+- `unknown` 모든 값.
+- any 타입과 유사하지만, unknown 타입에 어떤 것을 대입하는 것이 유효하지 않기 때문에 더 안전하다.
 
 ```ts
 function f1(a: any) {
@@ -142,6 +142,8 @@ function f3(a: unknown) {
 ```
 
 ### 타입제한
+
+- `extends` 로 타입제한
 
 ```ts
 function longest<Type extends { length: number }>(a: Type, b: Type) {
@@ -160,6 +162,8 @@ const longerString = longest("alice", "bob");
 const notOK = longest(10, 100);
 ```
 
+- **추론타입** 타입의 속성이 맞는지 체크
+
 ```ts
 function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
   return obj[key];
@@ -168,7 +172,7 @@ function getProperty<Type, Key extends keyof Type>(obj: Type, key: Key) {
 let x = { a: 1, b: 2, c: 3, d: 4 };
 
 getProperty(x, "a");
-getProperty(x, "m");
+getProperty(x, "m"); // ERROR
 ```
 
 ### 타입 인수 명시
@@ -220,7 +224,11 @@ type A = keyof Arrayish; // number
 ```ts
 type Predicate = (x: unknown) => boolean;
 type K = ReturnType<Predicate>; // boolean
+```
 
+- 타입이 아니라 실제 함수를 쓰고싶으면 `typeof` 키워드를 사용해야함.
+
+```ts
 function f() {
   return { x: 10, y: 3 };
 }
@@ -255,6 +263,8 @@ type Age2 = Person["age"];
 
 ### 조건부 타입
 
+- 삼항연산자 사용
+
 ```ts
 type MessageOf<T> = T extends { message: unknown } ? T["message"] : never;
 
@@ -271,6 +281,8 @@ type EmailMessageContents = MessageOf<Email>;
 type DogMessageContents = MessageOf<Dog>;
 ```
 
+- 배열이면 요소값, 요소면 그대로리턴
+
 ```ts
 type Flatten<T> = T extends any[] ? T[number] : T;
 
@@ -286,12 +298,11 @@ type Num = Flatten<number>;
 - infer : 직접 추출하지 않고 요소 타입을 추론
 
 ```ts
+// qoduf
 type Flatten<Type> = Type extends Array<infer Item> ? Item : Type;
 
 // ReturnType<T> 에서 infer를 사용한다.
-type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
-  ? Return
-  : never;
+type GetReturnType<Type> = Type extends (...args: never[]) => infer Return ? Return : never;
 ```
 
 ### Mapped Types

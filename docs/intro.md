@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ### 주제 Queue
 
-- TypeScript 문서
+- TypeScript 문서 (참고)
 
 ### 참고 site
 
