@@ -302,7 +302,9 @@ type Num = Flatten<number>;
 type Flatten<Type> = Type extends Array<infer Item> ? Item : Type;
 
 // ReturnType<T> 에서 infer를 사용한다.
-type GetReturnType<Type> = Type extends (...args: never[]) => infer Return ? Return : never;
+type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
+  ? Return
+  : never;
 ```
 
 ### Mapped Types
@@ -326,6 +328,15 @@ type FeatureOptions = OptionsFlags<FeatureFlags>;
     newUserProfile: boolean;
    };
  * */
+```
+
+- 옵셔널 속성 제거
+
+```ts
+// Removes 'optional' attributes from a type's properties
+type Concrete<Type> = {
+  [Property in keyof Type]-?: Type[Property];
+};
 ```
 
 ### Key Remapping via `as`
