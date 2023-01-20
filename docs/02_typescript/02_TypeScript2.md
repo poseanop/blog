@@ -12,52 +12,13 @@ sidebar_position: 2
 
 - 부분집합
 
-```ts
-interface Todo {
-  title: string;
-  description: string;
-}
-
-function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
-  return { ...todo, ...fieldsToUpdate };
-}
-
-const todo1 = {
-  title: "organize desk",
-  description: "clear clutter",
-};
-
-const todo2 = updateTodo(todo1, {
-  description: "throw out trash",
-});
-```
-
 ### `Required<Type>`
 
 - 모든 프로퍼티가 필수
 
-```ts
-interface Props {
-  a?: number;
-  b?: string;
-}
-
-const obj: Props = { a: 5 };
-
-const obj2: Required<Props> = { a: 5, b: 6 }; // 무조건만족해야함
-```
-
 ### `Record<Keys,Type>`
 
 - key, value 타입을 가진 객체
-
-```ts
-type Type = Record<"title" | "age", number>;
-type Type2 = {
-  title: number;
-  age: number;
-};
-```
 
 ### `Pick<Type, Keys>`
 
@@ -78,3 +39,26 @@ type Type2 = {
 ### `NonNullable<Type>`
 
 - 타입에서 null, undefined 제거
+
+## JSX
+
+- `<>` 꺾쇠괄호 타입단언은 tsx에서 사용할 수 없다.
+- `내장요소`(div..) 와 `컴포넌트`(Mycomponent...) 를 구분하기 위해서 컴포넌트는 항상 대문자를 써야함.
+
+## Module
+
+### 선택적 모듈 로딩
+
+- `import id = require('')` 문으로 참조-제거 최적화 가능
+
+```ts
+declare function require(moduleName: string): any;
+import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+if (needZipValidation) {
+  let ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
+  let validator = new ZipCodeValidator();
+  if (validator.isAcceptable("...")) {
+    /* ... */
+  }
+}
+```
