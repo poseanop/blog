@@ -62,3 +62,44 @@ if (needZipValidation) {
   }
 }
 ```
+
+### Ambient 모듈
+
+- 구현을 정의하지 않는 선언
+
+```ts
+// node.d.ts
+declare module "url" {
+  export interface Url {
+    protocol?: string;
+    hostname?: string;
+    pathname?: string;
+  }
+  export function parse(
+    urlStr: string,
+    parseQueryString?,
+    slashesDenoteHost?
+  ): Url;
+}
+
+// main.ts
+/// <reference path="node.d.ts"/>
+import * as URL from "url";
+let myUrl = URL.parse("http://www.typescriptlang.org");
+```
+
+- Shorthand
+
+```ts
+declare module "hot-new-module"; // any로 결정됨
+```
+
+- Wildcard
+
+```ts
+// .text 일치하는 것들 cover
+declare module "*.text" {
+  const content: string;
+  export default content;
+}
+```
