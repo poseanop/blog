@@ -103,3 +103,7 @@ declare module "*.text" {
   export default content;
 }
 ```
+
+### 추가로 공부하고싶은 부분
+
+- Project Configuration (새로운 포스팅 예정)
