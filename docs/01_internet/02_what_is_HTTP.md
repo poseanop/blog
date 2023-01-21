@@ -68,11 +68,29 @@ Content-Type: text/html
 
 ### HTTP/1.1 – 표준 프로토콜
 
+- 커넥션 재사용으로 시간 절약
+- 파이프라이닝으로 레이턴시 낮춤
+- 청크 응답
+- 캐시
+- HOST 헤더로 코로케이션 가능해짐
+
+### HTTP 확장
+
+- ssl (보안 레이어)
+- REST API로 읽기 뿐만 아니라 저작이 가능해짐 (SPA)
+  - 단점은 각각의 웹사이트에서 자신들만의 비표준 RESTful API를 정의하고 그에 대한 전권을 가진다는 사실
+- 서버 전송 이벤트 : 서버가 브라우저로 이따금씩 보내는 메시지를 푸쉬할 수 있는 곳.
+- 웹소켓 : 기존 HTTP 커넥션을 업그레이드하여 만들 수 있는 새로운 프로토콜.
+- [보안 모델 완화](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#%EC%9B%B9%EC%9D%98_%EB%B3%B4%EC%95%88_%EB%AA%A8%EB%8D%B8_%EC%99%84%ED%99%94) (same origin 정책과 독립적) : CORS / CSP ...
+
+### HTTP/2 – 더 나은 성능을 위한 프로토콜
+
 - wip...
 
 ### 추가로 공부하고싶은 부분
 
 - OSI 7계층 -유튜브 (새 포스팅)
 - [QUIC](https://developer.mozilla.org/ko/docs/Web/HTTP/Overview#http%EC%99%80_%EC%97%B0%EA%B2%B0)
-- [url](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web)
+- [url](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web) (새포스팅)
   - param, 스키마 등
+- [ssl](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#%EB%B3%B4%EC%95%88_%EC%A0%84%EC%86%A1%EC%9D%84_%EC%9C%84%ED%95%9C_http_%EC%82%AC%EC%9A%A9)
