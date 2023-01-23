@@ -71,7 +71,7 @@ Content-Type: text/html
 - 커넥션 재사용으로 시간 절약
 - 파이프라이닝으로 레이턴시 낮춤
 - 청크 응답
-- 캐시
+- 캐시 ([Cache-Control](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Cache-Control) 헤더로 제어)
 - HOST 헤더로 코로케이션 가능해짐
 
 ### HTTP 확장
@@ -85,12 +85,43 @@ Content-Type: text/html
 
 ### HTTP/2 – 더 나은 성능을 위한 프로토콜
 
-- wip...
+- 텍스트 프로토콜 -> 바이너리 프로토콜
+- 메시지 -> 프레임
+- 더이상 read 불가능
+- **다중화 프로토콜**/다중전송(multiplexing) : 동일한 커넥션 상에서 병렬 요청 가능
+- 헤더 압축으로 **오버헤드** 개선
+
+### HTTP/3 - QUIC
+
+- UDP 사용
+- 연결 설정 시간 단축
+- HTTP/2는 최초 연결 요청부터 전송까지 2~3회의 추가 트래픽이 소요되지만, HTTP/3은 연결과 동시에 실제 데이터 전송이 가능한 방식이다.
+
+### CORS
+
+- 브라우저에서 교차출처의 HTTP 요청은 제한함. [Same Origin Policy](https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy) (link, script, img 태그는 가능)
+- **CORS** : 추가 HTTP 헤더를 사용하여, 교차출처 요청을 가능하게 함
+- 해결방법
+  1. JSONP 이용
+  2. 프록시 서버를 이용
+  3. 서버측 `Access-Control-Allow-Origin` 헤더 제어 (credentials 사용시에는 주소명시 필수!!)
+
+### 보안
+
+- **CSP (콘텐츠 보안 정책)** : XSS (Cross-Site Scripting ) 및 데이터 삽입 공격 등 공격을 완화하는 보안 정책
+  - HTTP 헤더를 통해 지정
+
+```
+Content-Security-Policy: default-src 'self' example.com *.example.com
+```
+
+- **SSL (Secure Sockets Layer)** : 데이터를 안전하게 보장하는 과거의 보안 표준 기술
+- **TLS (전송계층 보안)** : 어플리케이션들이 네트워크 상에서 안전하게 통신하기 위해 사용된 프로토콜
+- **HTTPS (HTTP Secure)** : SSL/TLS를 사용하는 HTTP 프로토콜의 암호화된 버전 (HTTP/2과 필요충분조건)
+- wip share/428
 
 ### 추가로 공부하고싶은 부분
 
 - OSI 7계층 -유튜브 (새 포스팅)
-- [QUIC](https://developer.mozilla.org/ko/docs/Web/HTTP/Overview#http%EC%99%80_%EC%97%B0%EA%B2%B0)
 - [url](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web) (새포스팅)
   - param, 스키마 등
-- [ssl](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#%EB%B3%B4%EC%95%88_%EC%A0%84%EC%86%A1%EC%9D%84_%EC%9C%84%ED%95%9C_http_%EC%82%AC%EC%9A%A9)
