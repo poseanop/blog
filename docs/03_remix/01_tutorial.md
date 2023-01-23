@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Tutorial
 
-> 1월 넷째주에 시작한 글
+> 1월 다섯째주
 
 ### 하이
 
@@ -21,3 +21,4 @@ sidebar_position: 1
 - `Outlet` 를 사용하면 하위 routers directory를 해당 컴포넌트로 연다.
 - router 함수 내에서 `action` 함수를 사용하면 formData 처리를 할 수 있다.
 - 튜토리얼 여기까지 JS disable 해도 모든 동작이 작동함!! form데이터와 router 기반이어서 ㅎㅎ..;;
+- https://github.com/poseanop/remix wip
