@@ -6,7 +6,7 @@ sidebar_position: 1
 
 > 1월 다섯째주
 
-### 하이
+### Short Tutorial
 
 - remix는 tailwind 를 사용한다.
 - remix는 routes 디렉토리로 클라이언트사이드라우팅이 가능
@@ -22,3 +22,16 @@ sidebar_position: 1
 - router 함수 내에서 `action` 함수를 사용하면 formData 처리를 할 수 있다.
 - 튜토리얼 여기까지 JS disable 해도 모든 동작이 작동함!! form데이터와 router 기반이어서 ㅎㅎ..;;
 - https://github.com/poseanop/remix wip
+
+### Long Tutorial
+
+- `<LiveReload />` 해줘야 live reloading 됨. 빠름
+- app/root.tsx 에서 `links` 함수 + `<Link/>` 컴포넌트 추가 하면 CSS import 가능
+- app 에 `.server` 파일이름이 들어가면 브라우저단 X
+- [또보기](https://remix.run/docs/en/v1/tutorials/jokes#network-type-safety) : [assertion](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#assertion-functions), [zod](https://www.npmjs.com/package/zod)
+- prisma 명령어
+  - `npx prisma db push` : 데이터 유지하며 스키마 업데이트
+  - `npx prisma db seed` : 시드 실행
+  - `npx prisma studio` : 웹으로 DB 보기
+- 더보기 CSRF 로그아웃 부분..!!
+- `ErrorBoundary`
