@@ -4,6 +4,7 @@ title: 어색함
 authors: poseanop
 tags: [어색함, 필터링]
 hide_table_of_contents: false
+date: 2023-01-13T10:00
 ---
 
 # 어색함

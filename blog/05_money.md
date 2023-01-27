@@ -4,6 +4,7 @@ title: 돈
 authors: poseanop
 tags: [돈]
 hide_table_of_contents: false
+date: 2023-01-20T10:00
 ---
 
 # 돈

@@ -4,6 +4,7 @@ title: 텐션
 authors: poseanop
 tags: [텐션, 필터링]
 hide_table_of_contents: false
+date: 2023-01-11T10:00
 ---
 
 # 텐션

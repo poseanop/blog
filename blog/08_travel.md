@@ -4,6 +4,7 @@ title: 여행
 authors: poseanop
 tags: [여행]
 hide_table_of_contents: false
+date: 2023-01-27T10:30
 ---
 
 # 여행
