@@ -8,7 +8,8 @@ sidebar_position: 2
 
 ### HTTP란
 
-- 하이퍼텍스트 전송 프로토콜(HTTP)은 HTML과 같은 하이퍼미디어 문서를 전송하기 위한 애**플리케이션 레이어 프로토콜**
+- 하이퍼텍스트 전송 프로토콜(HTTP)
+- HTML과 같은 하이퍼미디어 문서를 전송하기 위한 **어플리케이션 레이어 프로토콜**
 - 웹 브라우저와 웹 서버간의 통신을 위해 설계되었지만 다른 목적으로도 사용가능함.
 - 클라이언트가 요청을 하기 위해 연결을 연 다음 응답을 받을때 까지 대기하는 전통적인 클라이언트-서버 모델을 따른다.
   - 연결 자체는 전송계층에서 제어되므로 HTTP 영역의 밖이지만, 연결을 의존하기 때문에 TCP 표준에 의존함.
@@ -70,9 +71,11 @@ Content-Type: text/html
 
 - 커넥션 재사용으로 시간 절약
 - 파이프라이닝으로 레이턴시 낮춤
+  - 레이턴시 : 자극과 반응 사이의 시간
 - 청크 응답
 - 캐시 ([Cache-Control](https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Cache-Control) 헤더로 제어)
 - HOST 헤더로 코로케이션 가능해짐
+  - 코로케이션 : 서버를 호스팅 전문업체에 위탁하여 사용하는 것 (<->호스팅)
 
 ### HTTP 확장
 
@@ -81,7 +84,8 @@ Content-Type: text/html
   - 단점은 각각의 웹사이트에서 자신들만의 비표준 RESTful API를 정의하고 그에 대한 전권을 가진다는 사실
 - 서버 전송 이벤트 : 서버가 브라우저로 이따금씩 보내는 메시지를 푸쉬할 수 있는 곳.
 - 웹소켓 : 기존 HTTP 커넥션을 업그레이드하여 만들 수 있는 새로운 프로토콜.
-- [보안 모델 완화](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#%EC%9B%B9%EC%9D%98_%EB%B3%B4%EC%95%88_%EB%AA%A8%EB%8D%B8_%EC%99%84%ED%99%94) (same origin 정책과 독립적) : CORS / CSP ...
+- Same Origin Policy (동일출처정책)과 독립적인 특성으로, 보안제약 완화.
+  - 그렇기에 헤더로 정책에 대한 리소스 공유 제어가 가능하다
 
 ### HTTP/2 – 더 나은 성능을 위한 프로토콜
 
@@ -90,6 +94,7 @@ Content-Type: text/html
 - 더이상 read 불가능
 - **다중화 프로토콜**/다중전송(multiplexing) : 동일한 커넥션 상에서 병렬 요청 가능
 - 헤더 압축으로 **오버헤드** 개선
+  - 오버헤드 : 어떤 처리를 하기 위해 들어가는 **간접**적인 처리 시간 or 메모리
 
 ### HTTP/3 - QUIC
 
@@ -99,7 +104,8 @@ Content-Type: text/html
 
 ### CORS
 
-- 브라우저에서 교차출처의 HTTP 요청은 제한함. [Same Origin Policy](https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy) (link, script, img 태그는 가능)
+- 브라우저에서 교차출처의 HTTP 요청은 제한함. ([Same Origin Policy](https://developer.mozilla.org/ko/docs/Web/Security/Same-origin_policy) 라고 함)
+  - link, script, img 태그는 가능
 - **CORS** : 추가 HTTP 헤더를 사용하여, 교차출처 요청을 가능하게 함
 - 해결방법
   1. JSONP 이용
@@ -118,7 +124,8 @@ Content-Security-Policy: default-src 'self' example.com *.example.com
 - **SSL (Secure Sockets Layer)** : 데이터를 안전하게 보장하는 과거의 보안 표준 기술
 - **TLS (전송계층 보안)** : 어플리케이션들이 네트워크 상에서 안전하게 통신하기 위해 사용된 프로토콜
 - **HTTPS (HTTP Secure)** : SSL/TLS를 사용하는 HTTP 프로토콜의 암호화된 버전 (HTTP/2과 필요충분조건)
-- wip share/428
+- **x-xss-protection:1; mode=block;** : param에 객체타입이 들어오는 등 위험이 감지되면 페이지 렌더링 X
+- 가용 서버 부족으로 부하를 줄이기 위해 보안 조건을 올리는 경우도 있음.
 
 ### 추가로 공부하고싶은 부분
 
