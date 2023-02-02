@@ -8,7 +8,8 @@ sidebar_position: 1
 
 ### 주제 Queue
 
-- What is HTTP? (로드맵)
+- react (딥다이브) (라핀)
+- remix 실제 개발 준비~
 
 ### 참고 site
 
