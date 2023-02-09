@@ -10,6 +10,7 @@ sidebar_position: 1
 
 - react (딥다이브) (라핀)
 - remix 실제 개발 준비~
+- recoil 공부
 
 ### 참고 site
 
