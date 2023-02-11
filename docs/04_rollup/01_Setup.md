@@ -59,7 +59,7 @@ sidebar_position: 1
 - [@rollup/plugin-babel](https://github.com/rollup/plugins/tree/master/packages/babel)
   - `exclude` : resolve에서 가져오기 때문에 babel에서는 exclude 설정.
   - `extensions` : 트랜스파일할 파일의 확장자.
-  - `babelHelpers` : bundled | runtime. 런타임타임, 컴파일타임 언제 트랜스파일링할지 결정. [참고1](https://so-so.dev/tool/rollup/rollupjs-config/) [참고2](cs/409)
+  - `babelHelpers` : bundled | runtime. 런타임타임, 컴파일타임 언제 트랜스파일링할지 결정. [참고1](https://so-so.dev/tool/rollup/rollupjs-config/) 참고2/cs/409
 - [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
   - babel 은 그 자체로는 아무기능이 없고 preset과 plugin으로 작동한다.
   - `preset-env`는 브라우저폴리필, 최신문법 등을 사용하게 해주는 플러그인이다.
