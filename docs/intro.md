@@ -8,7 +8,9 @@ sidebar_position: 1
 
 ### 주제 Queue
 
-- react (딥다이브) (라핀)
+- react
+  - 컴포넌트 : https://www.youtube.com/watch?v=fR8tsJ2r7Eg
+  - 마이크로프론트엔드
 - remix 실제 개발 준비~
 - recoil 공부
 
