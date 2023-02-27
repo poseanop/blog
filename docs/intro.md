@@ -9,10 +9,10 @@ sidebar_position: 1
 ### 주제 Queue
 
 - react
-  - 컴포넌트 : https://www.youtube.com/watch?v=fR8tsJ2r7Eg
   - 마이크로프론트엔드
 - remix 실제 개발 준비~
-- **recoil 공부 (vs redux , zustand)**
+- **recoil 공부**
+- **브라우저작동원리**
 
 ### 참고 site
 
