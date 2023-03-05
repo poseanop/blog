@@ -13,6 +13,7 @@ sidebar_position: 1
 - remix 실제 개발 준비~
 - **recoil 공부**
 - **브라우저작동원리**
+- https://blog.drakejin.me/React-VirtualDOM-And-Repaint-Reflow/
 
 ### 참고 site
 

@@ -1,0 +1,43 @@
+---
+sidebar_position: 3
+---
+
+import image03_01 from "./images/03_01.avif";
+
+# Browsers
+
+> 3월 1째주 글
+
+### 브라우저
+
+- 주요기능 : URL을 통해 서버에 웹 리소스를 요청하고 응답받은 정보를 화면을 그려준다.
+
+### 구조
+
+<img src={image03_01} width="500px" />
+
+- **User Interface** : 주소표시줄, 뒤로앞으로 버튼 등 페이지가 표시되는 창 제외한 모든 부분
+- **Browser Engine** : UI와 렌더링 엔진간의 작업
+- **Rendering Engine** : 요청된 컨텐츠 표시 담당. 구문분석, 화면표시...
+- **Networking** : HTTP 요청과 같은 네트워크 호출. 브라우저와 독립적임
+- **UI Backend** : 콤보상자, 창과 같은 기본 위젯 그리기. OS단.
+- **JavaScript Interpreter** : JavaScript 코드를 분석하고 실행되는데 사용
+- **Data Persistence** : localStorage, cookie 같은 데이터를 로컬에 저장
+
+### 파싱 과정
+
+- 웹 모델은 동기식. `<script>` 태그를 만나면 파싱, 실행까지 하고 다음 구문분석이 시작된다.
+- 네트워크로 외부 리소스를 가져오는 과정도 동기식이라 구문분석이 중단된다.
+- `defer` 속성을 통해 구문분석 이후 실행하도록 할 순 있다.
+- `async` 는 로드, 실행 모두 비동기로 동작.
+
+### 레이아웃, 페인트
+
+- 레이아웃 : 렌더트리가 형성되고 실제 위치와 크기가 계산됨. 상대값도 절대값 px로 변환됨.
+- 페인트 : 실제로 그리는 단계
+- DOM의 구조나 크기, 위치가 바뀌는 경우 리플로우가 일어나서 트리를 다시 구성하고 페인트도 다시 수행한다.
+- 색상변경, transform 이동의 경우 리페인트가 일어나서 페인트만 다시 수행한다.
+
+### 더 공부하고싶은 부분
+
+- [web API (window, dom ...)](https://developer.mozilla.org/ko/docs/Web/API)
