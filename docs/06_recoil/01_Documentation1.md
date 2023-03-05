@@ -88,7 +88,7 @@ class ErrorBoundary extends React.Component {
 ```jsx
 const userNameQuery = selectorFamily({
   key: "UserName",
-  get: (userID) => async () => {
+  get: userID => async () => {
     const response = await myDBQuery({ userID });
     if (response.error) {
       throw response.error;
@@ -134,7 +134,7 @@ const myDBQuery = ({ userID }) => {
     setTimeout(() => {
       res({
         name: userID,
-        friendList: table.slice(index, nextIndex).map((item) => {
+        friendList: table.slice(index, nextIndex).map(item => {
           return item;
         }),
       });
@@ -149,7 +149,7 @@ const currentUserIDState = atom({
 
 const userInfoQuery = selectorFamily({
   key: "UserInfoQuery",
-  get: (userID) => async () => {
+  get: userID => async () => {
     const response = await myDBQuery({ userID });
     if (response.error) {
       throw response.error;
@@ -167,7 +167,7 @@ const friendsInfoQuery = selector({
   key: "FriendsInfoQuery",
   get: ({ get }) => {
     const { friendList } = get(currentUserInfoQuery);
-    return friendList.map((friendID) => get(userInfoQuery(friendID)));
+    return friendList.map(friendID => get(userInfoQuery(friendID)));
   },
 });
 
@@ -179,7 +179,7 @@ function CurrentUserInfo() {
     <div>
       <h1>{currentUser.name}</h1>
       <ul>
-        {friends.map((friend) => (
+        {friends.map(friend => (
           <li key={friend.id} onClick={() => setCurrentUserID(friend.name)}>
             {friend.name}
           </li>
@@ -222,3 +222,5 @@ export default MyApp;
 
 - [pre-fetching](https://recoiljs.org/ko/docs/guides/asynchronous-data-queries#pre-fetching-%EB%AF%B8%EB%A6%AC-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0)
 - [흥미로운 예제](https://recoiljs.org/ko/docs/guides/asynchronous-data-queries#%EC%97%90%EB%9F%AC-%EB%A9%94%EC%8B%9C%EC%A7%80%EB%A5%BC-%ED%86%B5%ED%95%9C-%EC%BF%BC%EB%A6%AC-%EC%9E%AC%EC%8B%9C%EB%8F%84)
+- 리코일 비동기와 useSWR react-query 비교
+- [Document2](https://recoiljs.org/ko/docs/guides/atom-effects/)
